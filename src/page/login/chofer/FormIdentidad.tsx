@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useEffect, useRef, useState } from "react";
 import type {
@@ -393,6 +393,8 @@ export default function FormIdentidad({
   termsHref = "#",
   privacyHref = "#",
 }: RegisterScreenProps) {
+  const navigate = useNavigate();
+
   // Validación telefónica
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
@@ -845,7 +847,8 @@ export default function FormIdentidad({
         </label>
 
         <button
-          type="submit"
+          type="button"
+          onClick={() => navigate("/registro/chofer/vehiculo")}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#10B981] py-3.5 text-sm font-bold text-[#111827] shadow-lg shadow-[#10B981]/25 transition-colors hover:bg-[#34D399] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111827]"
         >
           Registrar Vehículo
