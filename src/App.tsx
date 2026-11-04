@@ -17,6 +17,11 @@ import DriverProfileApp from './page/pasajero/DatosChofer'
 import ReportsApp from './page/pasajero/Sos'
 import IncidentReportForm from './page/pasajero/FormReportarAccidente'
 import IncidentDetail from './page/pasajero/DetallesAcciente'
+import TripHistory from './page/chofer/Viajes'
+import EarningsDashboard from './page/chofer/Ganancias'
+import ReportsAppChofer from './page/chofer/Sos'
+import IncidentReportFormChofer from './page/chofer/FormReportarAccidente'
+import IncidentDetailChofer from './page/chofer/DetallesAcciente'
 import './App.css'
 
 function App() {
@@ -62,6 +67,12 @@ function App() {
           />
         }
       />
+      <Route path="/chofer/sos" element={<ReportsAppChofer />} />
+      <Route path="/chofer/reportar-accidente" element={<IncidentReportFormChofer />} />
+      <Route path="/chofer/detalles-accidente" element={<IncidentDetailChofer />} />
+
+      <Route path="/chofer/ganancias" element={<EarningsDashboard />} />
+      <Route path="/chofer/viajes" element={<TripHistory />} />
       <Route path="/pasajero/detalles-accidente" element={<IncidentDetail />} />
       <Route path="/pasajero/reportar-accidente" element={<IncidentReportForm />} />
       <Route path="/pasajero/sos" element={<ReportsApp />} />
@@ -108,6 +119,11 @@ function App() {
       />} />
       <Route path="/registro/pasajero/solicitar-transporte" element={<PassengerApp />} />
       <Route path="/chofer/solicitudes" element={<DriverRadarScreen 
+        onTabChange={(tab) => {
+          if (tab === 'trips') {
+            navigate('/chofer/viajes')
+          }
+        }}
         onNegotiate={() => {
           navigate('/chofer/negociacion')
         }}
@@ -122,7 +138,9 @@ function App() {
       />
       <Route
         path="/chofer/solicitud-aceptada"
-        element={<AcceptedRequestScreen />}
+        element={<AcceptedRequestScreen 
+          onArrived={() => navigate('/chofer/solicitudes')}
+        />}
       />
       <Route
         path="/pasajero/viajes"
