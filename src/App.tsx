@@ -9,6 +9,14 @@ import NegotiationScreen from './page/chofer/Negociacion'
 import AcceptedRequestScreen from './page/chofer/SolicitudAceptada'
 import PassengerHistoryScreen from './page/pasajero/Viajes'
 import Dashboard from './page/admin/Resumen'
+import PassengerApp from './page/pasajero/FormSolicitarTransporte'
+import NegotiationChatApp from './page/pasajero/Negociacion'
+import TransportStatusAndHistoryApp from './page/pasajero/SolicitudAceptada'
+import RealTimeTransportTrackingApp from './page/pasajero/DetallesChofer'
+import DriverProfileApp from './page/pasajero/DatosChofer'
+import ReportsApp from './page/pasajero/Sos'
+import IncidentReportForm from './page/pasajero/FormReportarAccidente'
+import IncidentDetail from './page/pasajero/DetallesAcciente'
 import './App.css'
 
 function App() {
@@ -54,6 +62,22 @@ function App() {
           />
         }
       />
+      <Route path="/pasajero/detalles-accidente" element={<IncidentDetail />} />
+      <Route path="/pasajero/reportar-accidente" element={<IncidentReportForm />} />
+      <Route path="/pasajero/sos" element={<ReportsApp />} />
+      <Route path="/pasajero/datos-chofer" element={<DriverProfileApp />} />
+      <Route
+        path="/pasajero/detalles-chofer"
+        element={<RealTimeTransportTrackingApp />}
+      />
+      <Route
+        path="/pasajero/solicitud-aceptada"
+        element={<TransportStatusAndHistoryApp />}
+      />
+      <Route
+        path="/pasajero/negociacion"
+        element={<NegotiationChatApp />}
+      />
       <Route
         path="/registro/pasajero/identidad"
         element={<PassengerIdentityForm 
@@ -82,6 +106,7 @@ function App() {
           navigate('/registro/chofer/identidad')
         }}
       />} />
+      <Route path="/registro/pasajero/solicitar-transporte" element={<PassengerApp />} />
       <Route path="/chofer/solicitudes" element={<DriverRadarScreen 
         onNegotiate={() => {
           navigate('/chofer/negociacion')
@@ -101,7 +126,14 @@ function App() {
       />
       <Route
         path="/pasajero/viajes"
-        element={<PassengerHistoryScreen />}
+        element={<PassengerHistoryScreen 
+          onTabChange={(tab) => {
+            if (tab === 'sos') {
+              navigate('/pasajero/sos')
+            }
+          }}
+          onRequestTransport={() => navigate('/registro/pasajero/solicitar-transporte')}
+        />}
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
