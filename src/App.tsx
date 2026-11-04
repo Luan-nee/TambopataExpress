@@ -8,6 +8,7 @@ import DriverRadarScreen from './page/chofer/Solicitudes'
 import NegotiationScreen from './page/chofer/Negociacion'
 import AcceptedRequestScreen from './page/chofer/SolicitudAceptada'
 import PassengerHistoryScreen from './page/pasajero/Viajes'
+import Dashboard from './page/admin/Resumen'
 import './App.css'
 
 function App() {
@@ -21,9 +22,14 @@ function App() {
           <Login 
             onRegister={() => navigate('/SelectRol')}
             onSubmit={(payload) => {
-              payload.role === 'passenger'
-                ? navigate('/pasajero/viajes')
-                : navigate('/chofer/solicitudes')
+              // admin, chofer y pasajero
+              if (payload.role === 'admin') {
+                navigate('/admin/resumen')
+              } else if (payload.role === 'driver') {
+                navigate('/chofer/solicitudes')
+              } else if (payload.role === 'passenger') {
+                navigate('/pasajero/viajes')
+              }
             }}
           />
         }
@@ -63,6 +69,10 @@ function App() {
             navigate('/SelectRol')
           }}
         />}
+      />
+      <Route
+        path="/admin/resumen"
+        element={<Dashboard />}
       />
       <Route path="/registro/chofer/vehiculo" element={<VehicleForm 
         onSubmit={() => {
