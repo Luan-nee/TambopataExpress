@@ -686,6 +686,7 @@ export default function VehicleScreen({
         <footer className="sticky bottom-0 border-t border-[#252E42] bg-[#111827]/95 px-4 py-3 backdrop-blur">
           <button
             type="submit"
+            formNoValidate
             className="w-full rounded-xl bg-[#10B981] py-3.5 text-sm font-bold text-[#111827] shadow-lg shadow-[#10B981]/25 transition-colors hover:bg-[#34D399] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111827]"
           >
             Finalizar

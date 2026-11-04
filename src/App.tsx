@@ -4,6 +4,9 @@ import Login from './page/login/Login'
 import DriverIdentityForm from './page/login/chofer/FormIdentidad'
 import VehicleForm from './page/login/chofer/FormVehiculo'
 import PassengerIdentityForm from './page/login/pasajero/FormIdentidad'
+import DriverRadarScreen from './page/chofer/Solicitudes'
+import NegotiationScreen from './page/chofer/Negociacion'
+import AcceptedRequestScreen from './page/chofer/SolicitudAceptada'
 import './App.css'
 
 function App() {
@@ -41,13 +44,45 @@ function App() {
       />
       <Route
         path="/registro/pasajero/identidad"
-        element={<PassengerIdentityForm />}
+        element={<PassengerIdentityForm 
+          onBack={() => {
+            navigate('/SelectRol')
+          }}
+        />}
       />
       <Route
         path="/registro/chofer/identidad"
-        element={<DriverIdentityForm />}
+        element={<DriverIdentityForm 
+          onBack={() => {
+            navigate('/SelectRol')
+          }}
+        />}
       />
-      <Route path="/registro/chofer/vehiculo" element={<VehicleForm />} />
+      <Route path="/registro/chofer/vehiculo" element={<VehicleForm 
+        onSubmit={() => {
+          navigate('/chofer/solicitudes')
+        }}
+        onBack={() => {
+          navigate('/registro/chofer/identidad')
+        }}
+      />} />
+      <Route path="/chofer/solicitudes" element={<DriverRadarScreen 
+        onNegotiate={() => {
+          navigate('/chofer/negociacion')
+        }}
+      />} />
+      <Route
+        path="/chofer/negociacion"
+        element={<NegotiationScreen 
+          onBack={() => navigate('/chofer/solicitudes')}
+          onCancel={() => navigate('/chofer/solicitudes')}
+          onAccept={() => navigate('/chofer/solicitud-aceptada')}
+        />}
+      />
+      <Route
+        path="/chofer/solicitud-aceptada"
+        element={<AcceptedRequestScreen />}
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
