@@ -176,7 +176,7 @@ export default function Dashboard() {
               active={activeMenu === 'Resumen Operativo'}
               onClick={() => setActiveMenu('Resumen Operativo')}
             />
-            <SidebarItem
+            {/* <SidebarItem
               icon={Radio}
               label="Monitoreo en Vivo"
               active={activeMenu === 'Monitoreo en Vivo'}
@@ -216,7 +216,7 @@ export default function Dashboard() {
               label="Configuración"
               active={activeMenu === 'Configuración'}
               onClick={() => setActiveMenu('Configuración')}
-            />
+            /> */}
           </nav>
         </div>
 

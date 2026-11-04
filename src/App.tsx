@@ -50,6 +50,15 @@ function App() {
       <Route path="/login" element={
         <Login 
           onRegister={() => navigate('/SelectRol')}
+          onSubmit={(playload) => {
+            if (playload.role == 'passenger') {
+              navigate('/pasajero/viajes')
+            } else if (playload.role == 'driver') {
+              navigate('/chofer/solicitudes')
+            } else if (playload.role == 'admin') {
+              navigate('/admin/resumen')
+            }
+          }}
         />} 
       />
       <Route
