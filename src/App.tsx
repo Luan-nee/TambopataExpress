@@ -7,6 +7,7 @@ import PassengerIdentityForm from './page/login/pasajero/FormIdentidad'
 import DriverRadarScreen from './page/chofer/Solicitudes'
 import NegotiationScreen from './page/chofer/Negociacion'
 import AcceptedRequestScreen from './page/chofer/SolicitudAceptada'
+import PassengerHistoryScreen from './page/pasajero/Viajes'
 import './App.css'
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
         element={
           <Login 
             onRegister={() => navigate('/SelectRol')}
+            onSubmit={(payload) => {
+              payload.role === 'passenger'
+                ? navigate('/pasajero/viajes')
+                : navigate('/chofer/solicitudes')
+            }}
           />
         }
       />
@@ -82,6 +88,10 @@ function App() {
       <Route
         path="/chofer/solicitud-aceptada"
         element={<AcceptedRequestScreen />}
+      />
+      <Route
+        path="/pasajero/viajes"
+        element={<PassengerHistoryScreen />}
       />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

@@ -292,7 +292,6 @@ export default function Login({
             type="email"
             inputMode="email"
             autoComplete="email"
-            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ejemplo@correo.com"
@@ -333,7 +332,6 @@ export default function Login({
             id="password"
             type={showPassword ? "text" : "password"}
             autoComplete="current-password"
-            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••••••"
@@ -368,6 +366,7 @@ export default function Login({
         {/* CTA */}
         <button
           type="submit"
+          formNoValidate
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#10B981] py-3.5 text-sm font-bold text-[#111827] shadow-lg shadow-[#10B981]/25 transition-colors hover:bg-[#34D399] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111827]"
         >
           Iniciar Sesión
