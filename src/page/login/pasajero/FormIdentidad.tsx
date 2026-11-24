@@ -27,6 +27,7 @@ import {
   UserCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 /* -------------------------------------------------------------------------- */
 /*  Tipos                                                                     */
@@ -263,6 +264,7 @@ export default function PassengerRegisterScreen({
   privacyHref = "#",
 }: PassengerRegisterScreenProps) {
   // Validación telefónica
+  const navigate = useNavigate();
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [secondsLeft, setSecondsLeft] = useState(0);
@@ -570,6 +572,7 @@ export default function PassengerRegisterScreen({
 
         <button
           type="submit"
+          onClick={() => navigate("/pasajero/viajes")}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#10B981] py-3.5 text-sm font-bold text-[#111827] shadow-lg shadow-[#10B981]/25 transition-colors hover:bg-[#34D399] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111827]"
         >
           Finalizar Registro
